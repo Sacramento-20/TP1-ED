@@ -1,3 +1,9 @@
+//---------------------------------------------------------------------
+// Arquivo	: Usuario.h
+// Conteudo	: Definições do TAD Usuario
+// Autor	: Lucas Santana do Carmo Sacramento (sacramento-15@.ufmg.br)
+//---------------------------------------------------------------------
+
 #ifndef USUARIO_H
 #define USUARIO_H
 #include "CaixaEntrada.h"

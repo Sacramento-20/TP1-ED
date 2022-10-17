@@ -1,3 +1,9 @@
+//---------------------------------------------------------------------
+// Arquivo	: CaixaEntrada.h
+// Conteudo	: Definições do TAD CaixaEntrada 
+// Autor	: Lucas Santana do Carmo Sacramento (sacramento-15@.ufmg.br)
+//---------------------------------------------------------------------
+
 #ifndef CAIXAENTRADA_H
 #define CAIXAENTRADA_H
 #include "Mensagem.h"
@@ -5,7 +11,6 @@
 class CaixaEntrada{
   public:
     Mensagem* head;
-    Mensagem* tail;
     Mensagem* temporario;
 
     CaixaEntrada();
@@ -15,6 +20,7 @@ class CaixaEntrada{
     void Insere_Prioridade(Mensagem &msg);
     void mostrar(int prioridade);
     void mostrarPrioridade();
+    void DesalocaMensagens();
     virtual ~CaixaEntrada();
 };
 

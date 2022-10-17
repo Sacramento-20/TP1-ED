@@ -1,16 +1,25 @@
+//---------------------------------------------------------------------
+// Arquivo	: ListaUsuario.cpp
+// Conteudo	: implementacao do TAD ListaUsuario  
+// Autor	: Lucas Santana do Carmo Sacramento (sacramento-15@.ufmg.br)
+//---------------------------------------------------------------------
+
 #include "ListaUsuario.h"
 
-
-ListaUsuario::ListaUsuario(){
+ListaUsuario::ListaUsuario()
+// Descricao: Construtor do objeto ListaUsuario
+// Entrada: Não tem
+// Saida: head
+{
   head = nullptr;
 }
 
-ListaUsuario::~ListaUsuario(){
-  delete head;
-}
 
-// Cadastrando mais de uma vez o mesmo usuario.
-void ListaUsuario::cadastroUsuario(int id){
+void ListaUsuario::cadastroUsuario(int id)
+// Descricao: Cadastra o obejeto Usuario em ordem sequencial
+// Entrada: id
+// Saida: Ultimo elemento da lista
+{
   Usuario* auxiliar = this->head;
 
   if(this->head==nullptr){
@@ -19,10 +28,8 @@ void ListaUsuario::cadastroUsuario(int id){
   }
   else{
     
-    
     while (auxiliar->next != nullptr){
-      
-      
+        
       if(auxiliar->Id == id){
         cout << "ERRO: CONTA " << auxiliar->Id << " JA EXISTENTE\n";
         return;
@@ -40,9 +47,12 @@ void ListaUsuario::cadastroUsuario(int id){
   }
 }
 
-void ListaUsuario::mostrarCaixaEntradada(int id){
+void ListaUsuario::mostrarCaixaEntradada(int id)
+// Descricao: Recebe o id de um usuario e procura na lista, caso exista, instancia o usuario e exibe o primerio elemento da caixa de entrada
+// Entrada: id
+// Saida: Depende se o usuario exista ou não
+{
   Usuario* user = head;
-
     while(user){
       if(user->Id == id){
         cout << "CONSULTA " << user->Id << ": ";
@@ -52,10 +62,13 @@ void ListaUsuario::mostrarCaixaEntradada(int id){
       user = user->next;
     }
     cout << "ERRO: CONTA " << id << " NAO EXISTE\n";
-  // }
 }
 
-void ListaUsuario::enviaMensagem(int id_destinatario, Mensagem &msg){
+void ListaUsuario::enviaMensagem(int id_destinatario, Mensagem &msg)
+// Descricao: Procrua na Lista de usuario se caso o usuario está cadastrado e caso esteja, envia mensagem para sua caixa de entrada
+// Entrada: id, Mensagem
+// Saida: Depende da existencia do usuario na lista
+{
   Usuario* usuarios = head;
 
   while(usuarios){
@@ -70,7 +83,11 @@ void ListaUsuario::enviaMensagem(int id_destinatario, Mensagem &msg){
   cout << "ERRO: CONTA " << id_destinatario << " NAO EXSITE\n";
 }
 
-void ListaUsuario::removerUsuario(int id){
+void ListaUsuario::removerUsuario(int id)
+// Descricao: Recebe o id do usuario e apaga o usuario, caso o mesmo exista, desalocando da lista
+// Entrada: id
+// Saida: Depende da existencia do usuario
+{
   Usuario* auxiliar = head;
   Usuario* auxiliar2;
 
@@ -95,4 +112,28 @@ void ListaUsuario::removerUsuario(int id){
     cout << "OK: CONTA " << auxiliar2->Id << " REMOVIDA\n";
     delete auxiliar2;
   }
+}
+
+void ListaUsuario::Limpa()
+// Descricao: Responsável por desalocar usuario que não foram desalocado ao decorrer do programa
+// Entrada: Não tem
+// Saida: head
+{
+  Usuario *user;
+  user = head->next;
+  
+  while(user != NULL){
+    head->next = user->next;
+    delete user;
+    user = head->next;
+  }
+}
+
+ListaUsuario::~ListaUsuario()
+// Descricao: Destrutor do objeto ListaUsuario
+// Entrada: Não tem
+// Saida: head
+{
+  Limpa();
+  delete head;
 }

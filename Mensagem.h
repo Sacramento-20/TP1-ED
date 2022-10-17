@@ -1,3 +1,9 @@
+//---------------------------------------------------------------------
+// Arquivo	: Mensagem.h
+// Conteudo	: Definições do TAD Mensagem 
+// Autor	: Lucas Santana do Carmo Sacramento (sacramento-15@.ufmg.br)
+//---------------------------------------------------------------------
+
 #ifndef MENSAGEM_H
 #define MENSAGEM_H
 #include <iostream>
