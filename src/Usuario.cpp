@@ -20,14 +20,6 @@ Usuario::Usuario(int id)
   this -> Id = id;
 }
 
-Usuario::~Usuario()
-// Descricao: Destrutor do objeto Usuario
-// Entrada: Não tem
-// Saida: Não tem
-{
-  // free(next);
-}
-
 void Usuario::ExibeMensagens()
 // Descricao: Chama função que exibe por prioridade da sua lista de emails cadastrados
 // Entrada: Não tem
@@ -49,4 +41,11 @@ void Usuario::DesalocaMensagens(){
   this->Emails.DesalocaMensagens();
 }
 
+Usuario::~Usuario()
+// Descricao: Destrutor do objeto Usuario
+// Entrada: Não tem
+// Saida: Não tem
+{
+  // free(next);
+}
 

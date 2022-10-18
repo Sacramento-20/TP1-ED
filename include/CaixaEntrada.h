@@ -18,7 +18,6 @@ class CaixaEntrada{
     
     bool vazia();
     void Insere_Prioridade(Mensagem &msg);
-    // void mostrar(int prioridade);
     void mostrarPrioridade();
     void DesalocaMensagens();
     virtual ~CaixaEntrada();
