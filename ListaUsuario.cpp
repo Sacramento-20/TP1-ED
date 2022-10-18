@@ -62,6 +62,7 @@ void ListaUsuario::mostrarCaixaEntradada(int id)
       user = user->next;
     }
     cout << "ERRO: CONTA " << id << " NAO EXISTE\n";
+    return ;
 }
 
 void ListaUsuario::enviaMensagem(int id_destinatario, Mensagem &msg)
@@ -83,6 +84,22 @@ void ListaUsuario::enviaMensagem(int id_destinatario, Mensagem &msg)
   cout << "ERRO: CONTA " << id_destinatario << " NAO EXSITE\n";
 }
 
+bool ListaUsuario::procuraUsuario(int id){
+  Usuario* auxiliar = head;
+  if(head == nullptr){
+    return 0;
+  }
+  else{
+    while(auxiliar){
+      if(auxiliar->Id == id){
+        return 1;
+      }
+      auxiliar = auxiliar->next;
+    }
+  }
+  return 0;
+}
+
 void ListaUsuario::removerUsuario(int id)
 // Descricao: Recebe o id do usuario e apaga o usuario, caso o mesmo exista, desalocando da lista
 // Entrada: id
@@ -91,26 +108,31 @@ void ListaUsuario::removerUsuario(int id)
   Usuario* auxiliar = head;
   Usuario* auxiliar2;
 
-  if(head == nullptr){
+  if(!procuraUsuario(id)){
     cout << "ERRO: CONTA " << id << " NAO EXSITE\n";
+    return ;
   }
-  else if(head->Id == id){
-    auxiliar = auxiliar->next;
-    cout << "OK: CONTA " << head->Id << " REMOVIDA\n";
-    delete head;
-    head = auxiliar;
-  }else{
-    while(auxiliar->next->Id != id){
-      auxiliar = auxiliar->next;
-      if(auxiliar == nullptr){
-        cout << "ERRO: CONTA " << id << " NAO EXSITE\n";
-        return ;
+  else{
+    // auxiliar = auxiliar->next;
+    // cout << "OK: CONTA " << id << " REMOVIDA\n";
+    // delete head;
+    // head = auxiliar;
+    while(auxiliar){
+      if(head->Id == id){
+        head = head->next;
       }
+      else if(auxiliar->next == nullptr){
+        break;
+      }
+      else if(auxiliar->next->Id == id){
+        auxiliar2 = auxiliar->next;
+        auxiliar->next = auxiliar2->next;
+        delete auxiliar2;
+        break;
+      }
+      auxiliar = auxiliar->next;
     }
-    auxiliar2 = auxiliar->next;
-    auxiliar->next = auxiliar2->next;
-    cout << "OK: CONTA " << auxiliar2->Id << " REMOVIDA\n";
-    delete auxiliar2;
+    cout << "OK: CONTA " << id << " REMOVIDA\n";
   }
 }
 
@@ -123,10 +145,12 @@ void ListaUsuario::Limpa()
   user = head->next;
   
   while(user != NULL){
+    user->DesalocaMensagens();
     head->next = user->next;
     delete user;
     user = head->next;
   }
+  // user->DesalocaMensagens();
 }
 
 ListaUsuario::~ListaUsuario()
@@ -134,6 +158,8 @@ ListaUsuario::~ListaUsuario()
 // Entrada: Não tem
 // Saida: head
 {
-  Limpa();
-  delete head;
+  if(head != NULL){
+    Limpa();  
+    delete head;
+  }
 }

@@ -47,6 +47,8 @@ void CaixaEntrada::Insere_Prioridade(Mensagem &msg)
     Nova_mensagem->next = auxiliar1->next;
     auxiliar1->next = Nova_mensagem;
   }
+
+
 }
 
 void CaixaEntrada::mostrarPrioridade()
@@ -74,12 +76,18 @@ void CaixaEntrada::DesalocaMensagens()
 // Saida: head
 {
   Mensagem *msg;
-  msg = head->next;
 
-  while(msg){
-    head->next = msg->next;
-    delete msg;
+  if(head == nullptr){
+    delete head;
+    return ;
+  }
+  else{
     msg = head->next;
+    while(msg){
+      head->next = msg->next;
+      delete msg;
+      msg = head->next;
+    }
   }
 }
 
@@ -89,7 +97,19 @@ CaixaEntrada::~CaixaEntrada()
 // Entrada: Não tem
 // Saida: head
 {
-  
+  // Mensagem *msg;
+  // msg = head->next;
+  // if(head == nullptr){
+  //   delete head;
+  //   return ;
+  // }
+  // else{
+  //   while(msg){
+  //     head->next = msg->next;
+  //     delete msg;
+  //     msg = head->next;
+  //   }
+  // }
   // DesalocaMensagens();
   delete head;
 }

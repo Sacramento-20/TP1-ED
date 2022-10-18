@@ -25,7 +25,6 @@ Usuario::~Usuario()
 // Entrada: Não tem
 // Saida: Não tem
 {
-  // this->Emails.DesalocaMensagens();
 }
 
 void Usuario::ExibeMensagens()
@@ -44,5 +43,9 @@ void Usuario::RecebeMensagem(Mensagem& msg)
   this->Emails.Insere_Prioridade(msg);
 }
 
+void Usuario::DesalocaMensagens(){
+  
+  this->Emails.DesalocaMensagens();
+}
 
 

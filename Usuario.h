@@ -20,6 +20,7 @@ class Usuario{
     void ExibeMensagens();
     void setProx(Usuario* u);
     Usuario* obterProx();
+    void DesalocaMensagens();
     
     ~Usuario();
 };

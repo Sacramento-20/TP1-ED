@@ -1,3 +1,13 @@
+#include "msgassert.h" 
+
+bool isNumber(const string& str)
+{
+    for (char const &c : str) {
+        if (std::isdigit(c) == 0) return false;
+    }
+    return true;
+}
+
 void exibeMain(string arquivo, ListaUsuario* Lista){
   ifstream texto;
   string frase;
@@ -18,13 +28,51 @@ void exibeMain(string arquivo, ListaUsuario* Lista){
       size_t encontrou_remove = frase.find(remove);
       
       if(encontrou_cadastra != string::npos){
-        id_usuario = frase[9] - '0';
-        Lista->cadastroUsuario(id_usuario);
+        int pos, tam;
+
+        // pos recebe a posição a frente a função que entrega
+        pos = frase.find(" ", 0);
+
+        // é recebida a posição do id do usuario
+        tam = pos + 1;
+        pos = frase.find(" ", pos + 1);
+
+        string digito =  frase.substr(tam, pos - tam);
+        
+        if(isNumber(digito)){
+          id_usuario = stoi(frase.substr(tam, pos - tam));
+          // cout << "Cadastra " << id_usuario << "\n";
+          Lista->cadastroUsuario(id_usuario);
+        }
+        else{
+          // assert
+          erroAssert(digito.empty(), "Valor encontrado não é numerico");
+        }
+          // id_usuario = frase[9] - '0';
       }
       
       else if(encontrou_consulta != string::npos){
-        id_usuario = frase[9] - '0';
-        Lista->mostrarCaixaEntradada(id_usuario);
+        int pos, tam;
+
+        // pos recebe a posição a frente a função que entrega
+        pos = frase.find(" ", 0);
+
+        // é recebida a posição do id do usuario
+        tam = pos + 1;
+        pos = frase.find(" ", pos + 1);
+
+        string digito =  frase.substr(tam, pos - tam);
+
+        if(isNumber(digito)){
+          id_usuario = stoi(frase.substr(tam, pos - tam));
+          Lista->mostrarCaixaEntradada(id_usuario);
+        }
+        else{
+          // assert
+          erroAssert(digito.empty(), "Valor encontrado não é numerico");
+          
+        }
+        // id_usuario = frase[9] - '0';
       }
       
       else if(encontrou_entrega != string::npos){
@@ -36,12 +84,32 @@ void exibeMain(string arquivo, ListaUsuario* Lista){
         // é recebida a posição do id do usuario
         tam = pos+1;
         pos = frase.find(" ", pos+1);
-        id_usuario = stoi(frase.substr(tam, pos-tam)); 
+        string digitoid =  frase.substr(tam, pos - tam);
+        // id_usuario = stoi(frase.substr(tam, pos-tam)); 
+        if(isNumber(digitoid)){
+          id_usuario = stoi(frase.substr(tam, pos - tam));
+          // cout << "ID:  " << id_usuario << "\n";
+        }
+        else{
+          // assert
+          erroAssert(digitoid.empty(), "Valor encontrado para ID não é numerico");
+          return;
+        }
         
         // é recebida a posição da prioridade.
         tam = pos+1;
         pos = frase.find(" ", pos+1);
-        prioridade = stoi(frase.substr(tam, pos-tam)); 
+        string digitoprio =  frase.substr(tam, pos - tam);
+
+        if(isNumber(digitoprio)){
+          prioridade = stoi(frase.substr(tam, pos - tam));
+          // cout << "Prioridade: " << prioridade << "\n";
+        }
+        else{
+          // assert
+          erroAssert(digitoprio.empty(),"Valor encontrado para prioridade não é numerico");
+          return;
+        }
 
         // todo o conteudo do email.
         tam = pos+1;
@@ -54,11 +122,31 @@ void exibeMain(string arquivo, ListaUsuario* Lista){
         msg.Msg = mensagem;
         
         Lista->enviaMensagem(id_usuario, msg);
+
+        // free(msg);
       }
     
       else if(encontrou_remove != string::npos){
-        id_usuario = frase[7] - '0';
-        Lista->removerUsuario(id_usuario);
+        int pos, tam;
+
+        // pos recebe a posição a frente a função que entrega
+        pos = frase.find(" ", 0);
+
+        // é recebida a posição do id do usuario
+        tam = pos + 1;
+        pos = frase.find(" ", pos + 1);
+
+        string digitoremove =  frase.substr(tam, pos - tam);
+        
+        if(isNumber(digitoremove)){
+          id_usuario = stoi(frase.substr(tam, pos - tam));
+          Lista->removerUsuario(id_usuario);
+        }
+        else{
+          // assert
+          erroAssert(digitoremove.empty(), "Valor encontrado não é numerico");
+        }
+        
       }
   }
   texto.close();

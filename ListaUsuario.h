@@ -20,6 +20,7 @@ public:
   void enviaMensagem(int id_destinatario, Mensagem &msg);
   void removerUsuario(int id);
   void Limpa();
+  bool procuraUsuario(int id);
   virtual ~ListaUsuario();
 };
 
