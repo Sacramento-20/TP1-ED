@@ -81,7 +81,7 @@ void ListaUsuario::enviaMensagem(int id_destinatario, Mensagem &msg)
     usuarios = usuarios->next;
   }
 
-  cout << "ERRO: CONTA " << id_destinatario << " NAO EXSITE\n";
+  cout << "ERRO: CONTA " << id_destinatario << " NAO EXISTE\n";
 }
 
 bool ListaUsuario::procuraUsuario(int id){
@@ -109,7 +109,7 @@ void ListaUsuario::removerUsuario(int id)
   Usuario* auxiliar2;
 
   if(!procuraUsuario(id)){
-    cout << "ERRO: CONTA " << id << " NAO EXSITE\n";
+    cout << "ERRO: CONTA " << id << " NAO EXISTE\n";
     return ;
   }
   else{
@@ -145,7 +145,7 @@ void ListaUsuario::Limpa()
   user = head->next;
   
   while(user != NULL){
-    user->DesalocaMensagens();
+    // user->DesalocaMensagens();
     head->next = user->next;
     delete user;
     user = head->next;

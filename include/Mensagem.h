@@ -20,9 +20,7 @@ class Mensagem{
 
     Mensagem();
     Mensagem(int prioridade, string mensagem);
-    void setProx(Mensagem* m);
-    Mensagem* obterProx();
-    ~Mensagem();
+    virtual ~Mensagem();
 };
 
 #endif

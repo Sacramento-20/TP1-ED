@@ -9,7 +9,9 @@ Mensagem::Mensagem()
 // Descricao: Construtor do Objeto Mensagem
 // Entrada: Não tem
 // Saida: Não tem
-{}
+{
+  this -> next = NULL;
+}
 
 Mensagem::Mensagem(int prioridade, string mensagem)
 // Descricao: Sobrecarga do construtor Mensagem que recebe dois parametros inicias

@@ -10,15 +10,15 @@
 
 class CaixaEntrada{
   public:
-    Mensagem* head;
-    Mensagem* temporario;
+    Mensagem* head = nullptr;
+    Mensagem* temporario = nullptr;
 
     CaixaEntrada();
     CaixaEntrada(Mensagem& msg);
     
     bool vazia();
     void Insere_Prioridade(Mensagem &msg);
-    void mostrar(int prioridade);
+    // void mostrar(int prioridade);
     void mostrarPrioridade();
     void DesalocaMensagens();
     virtual ~CaixaEntrada();

@@ -20,7 +20,7 @@ class Usuario{
     void ExibeMensagens();
     void DesalocaMensagens();
     
-    ~Usuario();
+    virtual ~Usuario();
 };
 
 #endif
