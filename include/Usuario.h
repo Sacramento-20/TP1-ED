@@ -12,13 +12,13 @@ class Usuario{
   public:
     int Id;
     CaixaEntrada Emails;  
-    Usuario* next = nullptr;
+    Usuario* Next = nullptr;
 
     Usuario();
     Usuario(int id);
-    void RecebeMensagem(Mensagem& msg);
-    void ExibeMensagens();
-    void DesalocaMensagens();
+    void Recebe_Mensagem( Email& mensagem );
+    void Exibe_Mensagens();
+    void Desaloca_Mensagens();
     
     virtual ~Usuario();
 };

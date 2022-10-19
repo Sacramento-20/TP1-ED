@@ -12,15 +12,15 @@
 
 using namespace std;
 
-class Mensagem{
+class Email{
   public:
     int Prioridade;
-    string Msg;
-    Mensagem* next; 
+    string Mensagem;
+    Email* Next; 
 
-    Mensagem();
-    Mensagem(int prioridade, string mensagem);
-    virtual ~Mensagem();
+    Email();
+    Email(int prioridade, string mensagem);
+    virtual ~Email();
 };
 
 #endif

@@ -1,9 +1,0 @@
-CONSULTA 1
-CONSULTA 1
-REMOVE 2
-ENTREGA 1 5 Mensagem para 1 com prioridade 5. FIM
-CONSULTA 1
-REMOVE 1
-ENTREGA 1 0 Mensagem para 1 com prioridade 0. FIM
-CADASTRA 1
-ENTREGA 1 0 Mensagem para 1 com prioridade 0. FIM

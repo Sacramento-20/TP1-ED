@@ -3,27 +3,27 @@
 // Conteudo	: implementacao do TAD Mensagem 
 // Autor	: Lucas Santana do Carmo Sacramento (sacramento-15@.ufmg.br)
 //---------------------------------------------------------------------
-#include "Mensagem.h"
+#include "Email.h"
 
-Mensagem::Mensagem()
+Email::Email()
 // Descricao: Construtor do Objeto Mensagem
 // Entrada: Não tem
 // Saida: Não tem
 {
-  this -> next = NULL;
+  this -> Next = NULL;
 }
 
-Mensagem::Mensagem(int prioridade, string mensagem)
+Email::Email(int prioridade, string mensagem)
 // Descricao: Sobrecarga do construtor Mensagem que recebe dois parametros inicias
 // Entrada: prioridade, mensagem
 // Saida: Não tem
 {
   this -> Prioridade = prioridade;
-  this -> Msg = mensagem; 
-  this -> next = NULL;
+  this -> Mensagem = mensagem; 
+  this -> Next = NULL;
 }
 
-Mensagem::~Mensagem()
+Email::~Email()
 // Descricao: Destrutor do objeto Mensagem
 // Entrada: Não tem
 // Saida: Não tem

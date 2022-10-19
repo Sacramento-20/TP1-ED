@@ -6,19 +6,19 @@
 
 #ifndef CAIXAENTRADA_H
 #define CAIXAENTRADA_H
-#include "Mensagem.h"
+#include "Email.h"
 
 class CaixaEntrada{
   public:
-    Mensagem* head = nullptr;
-    Mensagem* temporario = nullptr;
+    Email* Head = nullptr;
+    Email* Temporario = nullptr;
 
     CaixaEntrada();
-    CaixaEntrada(Mensagem& msg);
+    CaixaEntrada(Email& mensagem);
     
-    void Insere_Prioridade(Mensagem &msg);
-    void mostrarPrioridade();
-    void DesalocaMensagens();
+    void Insere_Prioridade(Email& mensagem);
+    void Mostrar_Prioridade();
+    void Desaloca_Mensagens();
     virtual ~CaixaEntrada();
 };
 

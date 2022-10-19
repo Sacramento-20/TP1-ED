@@ -228,3 +228,9 @@ trabalho pratico 1 Estrutura de Dados
   GEEKSFORGEEKS. Linked List Data Structure - GeeksforGeeks. Disponível em: <https://www.geeksforgeeks.org/data-structures/linked-list/>.  
 
 ### instruções
+  Instruções para compilação e execução: Esta seção deve ser colocada em um apêndice ao fim
+  do documento e em uma página exclusiva (não divide página com outras seções).
+
+  Ao compilar o arquivo é necessário a utilização do MAKEFILE, ele será responsável por gerar todos os arquivos binarios que serão necessários para a compilação do programa.
+  Ao utilizar o comando make no terminal, será gerado todos os arquivos binários na pasta obj, após isso o arquivo run.out será gerado na basta bin. O programa será executado quando passado um arquivo de texto com todas as opções do servidor de emails, exibindo ao final da execução no terminal do windows ou linux. Foi utilizado o ambiente Linux para todo o desenvolvimento do programa.
+  Quanto a saida: por padrão todas as opçoes estão sendo exibidas no terminal, por conta disso, caso aja a necessidade de gerar um arquivo para comparação, é recomendado usar o comenado ./bin/run.out ./tests/input.txt > ./tests/saida.txt para gerar o arquivo de texto para futura comparação. Os arquivos extras disponibilizados no moodle se encontram na pasta tests em uma subpasta chamada inputs, assim como as saidas que se encontram na subpasta outputs.

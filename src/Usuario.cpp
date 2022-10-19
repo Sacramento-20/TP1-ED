@@ -17,35 +17,40 @@ Usuario::Usuario(int id)
 // Entrada: id
 // Saida: id
 {
+
   this -> Id = id;
+
 }
 
-void Usuario::ExibeMensagens()
+void Usuario::Exibe_Mensagens()
 // Descricao: Chama função que exibe por prioridade da sua lista de emails cadastrados
 // Entrada: Não tem
 // Saida: CaixaEntrada
 {
-  this->Emails.mostrarPrioridade();
+
+  this->Emails.Mostrar_Prioridade();
+
 }
 
-void Usuario::RecebeMensagem(Mensagem& msg)
+void Usuario::Recebe_Mensagem( Email& mensagem )
 // Descricao: Cadastra um novo Email na caixa de entrada do proprio usuario, instanciando o objeto CaixaEntrada
 // Entrada: Mensagem
 // Saida: CaixaEntrada
 {
-  this->Emails.Insere_Prioridade(msg);
+
+  this -> Emails.Insere_Prioridade( mensagem );
+
 }
 
-void Usuario::DesalocaMensagens(){
+void Usuario::Desaloca_Mensagens(){
   
-  this->Emails.DesalocaMensagens();
+  this -> Emails.Desaloca_Mensagens();
+
 }
 
 Usuario::~Usuario()
 // Descricao: Destrutor do objeto Usuario
 // Entrada: Não tem
 // Saida: Não tem
-{
-  // free(next);
-}
+{}
 

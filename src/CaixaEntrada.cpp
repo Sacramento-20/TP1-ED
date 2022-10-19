@@ -9,96 +9,119 @@
 CaixaEntrada::CaixaEntrada()
 // Descricao: Construtor padrão para o objeto CaixaEntrada. Head é inicializada como null
 // Entrada: Não tem
-// Saida: head
+// Saida: Head
 {
-  head = NULL;
+
+  Head = NULL;
+
 }
 
-CaixaEntrada::CaixaEntrada(Mensagem& msg)
-// Descricao: Sobrecarga do Construtor CaixaEntrada que recebe o objeto mensagem no atributo head
+CaixaEntrada::CaixaEntrada( Email& mensagem )
+// Descricao: Sobrecarga do Construtor CaixaEntrada que recebe o objeto mensagem no atributo Head
 // Entrada: Mensagem
-// Saida: head
+// Saida: Head
 {
-  head = new Mensagem(msg);
+
+  Head = new Email( mensagem );
+
 }
 
 
-void CaixaEntrada::Insere_Prioridade(Mensagem &msg)
+void CaixaEntrada::Insere_Prioridade( Email& mensagem )
 // Descricao: Insere um email no objeto Caixa de Entrada com base na prioridade que neste caso é crescente 
 // Entrada: Mensagem
-// Saida: head
+// Saida: Head
 {
-  Mensagem *Nova_mensagem = new Mensagem(msg);
 
-  Mensagem *auxiliar1 = head;
-  Mensagem *auxiliar2 = head;
+  Email *novo_email = new Email( mensagem );
+  Email *auxiliar1 = Head;
+  Email *auxiliar2 = Head;
 
-  Nova_mensagem->next = NULL;
+  novo_email ->  Next = NULL;
 
-  while((auxiliar2 != NULL) && (auxiliar2->Prioridade >= Nova_mensagem->Prioridade)){
+  while(( auxiliar2 != NULL ) && ( auxiliar2->Prioridade >= novo_email -> Prioridade )){
+  
     auxiliar1 = auxiliar2;
-    auxiliar2 = auxiliar2->next;
+    auxiliar2 = auxiliar2 ->  Next;
+  
   }
-  if(auxiliar1 == auxiliar2){
-    Nova_mensagem->next = auxiliar1;
-    head = Nova_mensagem;
+  if( auxiliar1 == auxiliar2 ){
+
+    novo_email ->  Next = auxiliar1;
+    Head = novo_email;
+  
   }
   else{
-    Nova_mensagem->next = auxiliar1->next;
-    auxiliar1->next = Nova_mensagem;
-  }
 
+    novo_email ->  Next = auxiliar1 ->  Next;
+    auxiliar1 ->  Next = novo_email;
+  
+  }
 
 }
 
-void CaixaEntrada::mostrarPrioridade()
+void CaixaEntrada::Mostrar_Prioridade()
 // Descricao: Exibe um email com base em sua prioridade e logo em seguida desaloca ele 
 // Entrada: Não tem
-// Saida: head
+// Saida: Head
 {
-  Mensagem* mensagens = head;
-  Mensagem* temp = head;
+  Email* emails = Head;
+  Email* temporario = Head;
 
-  if(head == NULL){
+  if(Head == NULL){
+  
     cout << "CAIXA DE ENTRADA VAZIA\n";
+  
   }
   else{
-    cout << mensagens->Msg << "\n";
-    temp = temp->next;
-    delete head;
-    head = temp;
+
+    cout << emails -> Mensagem << "\n";
+    temporario = temporario-> Next;
+    delete Head;
+    Head = temporario;
+  
   }
+
 }
 
-void CaixaEntrada::DesalocaMensagens()
+void CaixaEntrada::Desaloca_Mensagens()
 // Descricao: Desaloca todas os objetos do tipo Mensagem restante na Caixa de entrada, caso houver
 // Entrada: Não tem
-// Saida: head
+// Saida: Head
 {
-  Mensagem *msg;
-
-  if(head == nullptr){
-    delete head;
+  
+  Email *emails;
+  if( Head == nullptr ){
+    
+    delete Head;
     return ;
+  
   }
   else{
-    msg = head->next;
-    while(msg){
-      head->next = msg->next;
-      delete msg;
-      msg = head->next;
+  
+    emails = Head-> Next;
+    while(emails){
+  
+      Head-> Next = emails-> Next;
+      delete emails;
+      emails = Head-> Next;
+  
     }
+  
   }
+
 }
 
 
 CaixaEntrada::~CaixaEntrada()
 // Descricao: Destrutor para a função CaixaEntrada
 // Entrada: Não tem
-// Saida: head
+// Saida: Head
 {
-  DesalocaMensagens();
-  delete head;
+
+  Desaloca_Mensagens();
+  delete Head;
+
 }
 
 
