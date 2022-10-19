@@ -112,7 +112,12 @@ O Trabalho prático está dividido em quatro TADs, sendo eles:
   ### Main
     O Main foi organizado de forma que todos os elementos necessarios para a funcinalidade dos filtros esteja contido nele.
     Iniciando por uma função chamada isNumber que recebe como parametro um string e itera a string, caso encontre alguma palavra retorna falso, caso contrário retorna o valor true, certificando que aquela string só possui valores numericos, isso vai ser muito importante, uma vez que o arquivo de texto que será passado atráves do terminal admite apenas valores do tipo string.
-    
+    Atraves de argumentos, será possivel passar um arquivo de texto como entrada para a realização do tratamento, ao declarar as variaveis que serão utilizadas para a manipulação do arquivo destaca-se algumas do tipo string que recebem palavras chaves como: "CONSULTA", "CADASTRA", "ENTREGA" e "REMOVE", após a declaração dessas variaveis, será declarado o objeto do tipo ListaUsuario para a manipulação do lista encadeada, e a abertura do arquivo de texto. Será utilizado um while que possui criterio de parada o fim do arquivo, dessa forma iterando cada linha do arquivo e armazenando em uma variavel do tipo string que será manipulada, após o recebimento de cada linha pela variavel do tipo string é utilizada a função find, guardando seu conteudo em uma variavel do tipo size_t, o valor retornado para esse tipo de string informa o numero de ocorrencias do que foi passado a ele, nesse caso a instancia de uma caida de caracteres em uma string, caso o valor seja diferente do atributo string::npos, significa que foi encontrado um instancia diferente, logo como é usado o validador diferente, a palavra foi encontrada. Sendo assim um estrutura de condição mapeia as 4 alternativas, para todas as opções serão inicializada duas variaveis do tipo inteiro pos e tam, eles serão limitadores para delimitarmos um intervalo pra selecionar um subconjunto de strings. Caso a instancia cadastra seja selecionada, vamos ignorar a primeira palavra, uma vez que é a propria palavra cadastra e a partir de um delimitador que nesse caso é o espaço, pegaremos o proximo valor imediatamente apos o espaço, uma string chamada digito receberá o valor numero em formato de string e apartir dai utilizaremos o função isNumber para checar que todos os elementos do tipo string são numericos, fazendo assim a conversão para int atraves da função stoi e incluiremos na Lista um novo usuario com esse valor que foi passado no arquivo de texto. Caso a função isNumber retorne o valor false, significa que o valor passado nao é numerico, então dessa forma é lançado um assert e o codigo é abortado de imediato.
+    Para os casos CONSULTA e REMOVE, funcionam da mesma forma, pegando o valor da string, checando se é numerica e convertendo caso seja verdadeira ou lançando uma asserção caso seja falsa e apos isso Chamando uma instancia para Lista para cada funcionalidade respectivamente.
+    Por ultimo tem-se a função ENTREGA que possui os parametros id do destinatário, prioridade da mensagem e a mensagem em si.
+    Utilizando os mesmos conceitos para as opções anteriores, a unica diferença para a função entrega é que ele deve checar se uma cadeia de caracteres é numerica ou não para o id e para a prioridade da mensagem e lançando uma asserção, caso não esteja de acordo com o padrão, após isso, pos irá receber o retorno da função find, ela retornará todas as mensagens que possui no final a expressão "FIM", dessa forma pegando toda a mensagem até o seu ponto final, não havendo a necessidade de iterar manualmente para encontrar o momento em que um ponto final é utilizado, dessa forma é criado o objeto do tipo mensagem com a prioridade e a mensagem e é chamada a lista com a instancia enviaMensagem que recebe como parametro o id do usuario e o objeto mensagem.
+    Após isso é fechado o arquivo e logo em seguida a Lista de USuarios é retirada da memoria, caracterizando assim o fim da execução do programa. 
+
 
 # Análise de Complexidade:
   Para uma boa analise de complexidade de um programa, deve ser feita função por função e após isso, avaliar todas as operações nela contida para dessa forma avaliar o programa como um todo. 
@@ -198,5 +203,30 @@ O Trabalho prático está dividido em quatro TADs, sendo eles:
 
     Visão geral:
       Dado que para estimar o tempo de execução e o limite assintotico de um programa, devemos analisar função por função, chega-se a conclusão de que o programa possui um limite assintotico O(n).
-  ### Usuario
-    O TAD Usuario 
+  ### Estratégias de Robustez
+    Como enfatizado no Main a estrategia de Robustez a ser utilizada foram os asserts para valores que são discrepantes daqueles que passado no enunciado ou para valores que não são numericos. A utilização da biblioteca msgassert.h foi levada em consideração, uma vez que o codigo a depender da implementação e caso uma letra seja convertida sem a devida atenção ela pode se tornar um valor numerico, fazendo com que erros em tempo de execução venham a existir, dessa forma, lançar um assert quando o valor passado não era um atributo numérico facilitou o entendimento do programa.
+  ### Conclusões
+    O trabalho prático é a melhor forma de entender como certas estruturas se comportam e a sua implementação apesar de não ser trivial, acaba se tornando um desafio extremamente produtivo, desenvolvendo habilidades do aluno como programador, mas a cima de tudo, nos fazendo entender como entidades tão abstratas podem ser tão intuitivas com a prática.
+    Foi feito um Lista encadeada de um objeto do tipo Mensagem, apos isso a lista encadeada foi incorporada atraves de composição a um objeto do tipo usuario que posteriormente foi adicionada a uma outra lista encadeada com objetos do tipo Usuario, esse aninhamento foi fundamental para o entendimento do assunto.
+    Sumario do que foi entendido com a implementação do trabalho prático.
+    -Manipulação de string através de funções como find.
+    - Entendimentedo de como funciona uma lista encadeada.
+    - Como procurar, exibir e excluir elementos em uma Lista encadeada.
+    - A Diferença da utilização da alocação dinamica para a alocação estatica de forma muito mais acentuada.
+    - A importancia real de como é prejuducial vazamentos de memoria.
+    - A eficiencia da utilização de uma lista feita por alicação dinamica.
+
+  ### bibliografia
+    Disponível em: <https://cplusplus.com/reference/string/string/npos/>. Acesso em: 19 out. 2022.
+    Programar em C++/Manipulando strings - Wikilivros. Disponível em: <https://pt.wikibooks.org/wiki/Programar_em_C%2B%2B/Manipulando_strings>.
+    Disponível em: <https://cplusplus.com/reference/string/string/substr/>.
+    Listas encadeadas. Disponível em: <https://www.ime.usp.br/~pf/algoritmos/aulas/lista.html>.
+    KHINTIBIDZE, L. Como determinar se uma string é um número em C++. Disponível em: <https://www.delftstack.com/pt/howto/cpp/how-to-determine-if-a-string-is-number-cpp/>. Acesso em: 19 out. 2022.
+    Curso de C. Disponível em: <https://www.pucsp.br/~so-comp/cursoc/aulas/cb70.html>. Acesso em: 19 out. 2022.
+    Disponível em: <https://pt.stackoverflow.com/questions/88064/retirar-elemento-de-uma-lista-encadeada>. Acesso em: 19 out. 2022.
+    std::find in C++. Disponível em: <https://www.geeksforgeeks.org/std-find-in-cpp/>.
+    Linked List | Set 3 (Deleting a node). Disponível em: <https://www.geeksforgeeks.org/linked-list-set-3-deleting-node/>.
+    GEEKSFORGEEKS. Linked List Data Structure - GeeksforGeeks. Disponível em: <https://www.geeksforgeeks.org/data-structures/linked-list/>.  
+  
+  ### instruções
+  
