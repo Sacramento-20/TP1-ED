@@ -1,6 +1,16 @@
-# TP1-ED
+# TP1-ED - Servidor de Emails
+## Lucas Santana do Carmo Sacramento - 2021031700.
+### Introdução: Contém a apresentação do contexto, problema, e qual solução será empregada.
+  Neste trabalho Prático disponibilizado pela matéria de Estrutura de Dados, nos coloca na pele de um programador de um servidor de emails, no qual o usuário do TAD terá a liberdade para cadastrar um usuario, remover, entregar uma mensagem e consultar a caixa de entrada pra determinado usuario. 
+  As mensagens serão exibidas seguindo uma ordem de prioridade, na qual pode variar de 0 a 9 e seguindo essa premissa uma mensagem com mesma ordem não pode sobrepor a outra não entrar em sua frente em uma possivel consulta.
+  Além disso, deve ser informado um erro caso funções sejam chamadas sem um alocação previa. Ex: consultar usuario que não foi cadastrado, dessa forma, deve exibir um erro de usuario inexistente e assim por diante.
+  Para resolver este problema, não podemos utilizar alocação estática, uma vez que só o usuario do TAD tem acesso ao numero de usuario que serão cadastrados, então, dessa forma, será feita atraves de alocação dinamica, com isso, a utilização de listas encadeadas será de fundamental importancia, uma vez que o limite da sua alocação será apenas dada ao uso de meemoria que será alocado ao programa.
+  Uma vez que foi definido o metodo para a implementação do programa, agora devemos definir quais TADs usaremos para a resolução do problema.
+  Inicialmente o contrato foi idealizado com 4 TADs: Mensagem, CaixaEntrada, Usuario, ListaUsuario. Dessa forma, será utilizada Mensagem e Usuario como objetos responsaveis por amazenar os atributos e os TADs CaixaEntrada e ListaUsuario, como objetos responsaveis por implementar a lista encadeada de cada um dos objetos.
+
 trabalho pratico 1 Estrutura de Dados
 
+# Método 
 O Trabalho prático está dividido em quatro TADs, sendo eles: 
   Email, CaixaEntrada, Usuario, ListaUsuario, com as seguintes funcionalidades. 
 ## Contrato dos TADs
@@ -42,7 +52,7 @@ O Trabalho prático está dividido em quatro TADs, sendo eles:
   através de uma estrutura de condição, primeiro é checado se a cabeça da lista é nula, caso seja verdadeiro, é retornado o erro de que a caixa de entrada está vazia, caso contrário, será exibida a mensagem atraves do ponteiro mensagens que foi declarado no escopo da função, a variavel temporaria que tambem está apontando para head, aponta para o segundo elemento da lista, o elemento que está na cabeça da lista (mensagem com maior prioridade e com ordem de chegada) é desalocado. Dessa forma o elemento cabeça recebe a variavel temporada que no momento está apontando para o elemento seguinte da lista.
 
   DesalocaMensagens: Metodo do tipo vazio que não possui nenhum parametro. Ele é responsável por desalocar todos os objetos do tipo Mensagens ao final da execução do programa, para isso, inicialmente é alocado uma variavel ponteiro do tipo Mensagem que será usada para iterar a caixa de entrada e desalocar as mensagens.
-  apos a inicialização do ponteiro mensagem e passado uma estrutura condicional que checa, caso a caixa de entrada do usuario já está vazia ou não com a expressão: se cabeça for nula. Caso seja, apenas é deletada a cabeça da lista, caso contrario, o ponteiro declarada no inicio do metodo, recebe o elemento posterior a head e inicializa um while até a variavel mensagem ser totalmente percorrida, dentro do while ó objeto alocado no head  é passado para o ponteiro mensagem que em seguida é deletado da memoria, apos isso, a variavel mensagem recebe novamente o proximo elemento e assim é iterado até a todas as mensagens serem totalmente desalocadas.
+  apos a inicialização do ponteiro mensagem e passado uma estrutura condicional que checa, caso a caixa de entrada do usuario já está vazia ou não com a expressão: se cabeça for nula. Caso seja, apenas é deletada a cabeça da lista, caso contrario, o ponteiro declarada no inicio do metodo, recebe o elemento posterior a head e inicializa um while até a variavel mensagem ser totalmente percorrida, dentro do while ó objeto alocado no head  é passado para o ponteiro mensagem que em seguida é deletado da memoria, apos isso, a variavel mensagem recebe novamente o proximo elemento e Lassim é iterado até a todas as mensagens serem totalmente desalocadas.
 
   Destrutor CaixaEntrada: Destrutor virtual que recebe o metodo DesalocaMensagens como descrita a cima e após isso, desaloca o elemento que se encontra na cabeça da lista.
 
@@ -96,5 +106,97 @@ O Trabalho prático está dividido em quatro TADs, sendo eles:
     Limpa: Metodo do tipo void que não recebe nenhum parametro tem por objetivo desalocar todos os usuarios restantes na lista encadeada.
     Através de um ponteiro auxiliar que é recebido o segundo elemento da lista, é passado por um for desaloca todos os usuario restantes, sobrendo apenas o elemento head.
 
-    Destrutor de ListaUsuario: Esse destrutor ira checar sempre se a cabeça da lista possui conteudo, caso exista, chama a função limpa, exemplificada a cima e por ultimo deleta o elemento da cabeça que foi deixado em aberto quando chamada a função Limpa, e assim é finalizada a execução do programa.
  
+    Destrutor de ListaUsuario: Esse destrutor ira checar sempre se a cabeça da lista possui conteudo, caso exista, chama a função limpa, exemplificada a cima e por ultimo deleta o elemento da cabeça que foi deixado em aberto quando chamada a função Limpa, e assim é finalizada a execução do programa.
+
+  ### Main
+    O Main foi organizado de forma que todos os elementos necessarios para a funcinalidade dos filtros esteja contido nele.
+    Iniciando por uma função chamada isNumber que recebe como parametro um string e itera a string, caso encontre alguma palavra retorna falso, caso contrário retorna o valor true, certificando que aquela string só possui valores numericos, isso vai ser muito importante, uma vez que o arquivo de texto que será passado atráves do terminal admite apenas valores do tipo string.
+    
+
+# Análise de Complexidade:
+  Para uma boa analise de complexidade de um programa, deve ser feita função por função e após isso, avaliar todas as operações nela contida para dessa forma avaliar o programa como um todo. 
+  Implementações que seguem o modelo de Lista encadeada, possui uma boa eficiencia, uma vez que é possivel acessar qualquer elemento da lista em O(1), pórem dado que o programa exige um determinado filtro, funções que poderiam ser O(1), acabam se tornando O(n), essas funções serão descritas logo abaixo.
+
+  ### Mensagem
+    O Tad Mensagem possui no total 3 metodos e todos com chamadas O(1), apenas com declarações de variaveis.
+    Mensagem() = O(1)
+    Mensagem(int prioridade, string mensagem) = O(1)
+    ~Mensagem() = O(1)
+
+  ### CaixaEntrada
+    CaixaEntrada() = O(1)
+    CaixaEntrada(Objeto do tipo Mensagem) = O(1)
+    Insere_Prioridade(Objeto do tipo Mensagem) = melhor caso O(1), pior caso O(n)
+    mostrarPrioridade() = O(1)
+    DesalocaMensagens() = melhor caso O(1), pior caso O(n)
+    ~CaixaEntrada() = melhor caso O(1), pior caso O(n)
+
+    Naturalmente a complexidade do TAD será maior uma vez que ela é responsável por alocar a lista encadeada do objeto mensagem. Dessa forma, funções que possuem inserção podem variar seu custo a depender da ordem de qual elemento tenha sido inserido.
+    Função Insere_prioridade:
+      Melhor caso:
+        Todos os elementos que forem inseridos possuirem uma prioridade crescente, dessa forma todas as novas mensagens serão inseridas na cabeça, o que transforma a função em O(1)
+      Pior Caso:
+        Qualquer outro caso que a nova mensagem possui um valor prioritário menor ou igual a mensagem inicial, dessa forma tendo que fazer o while ser percorrido para a inserção.
+    Função DesalocaMensagens:
+      Melhor caso:
+        Caso aja apenas um elemento na lista, assim deletando apenas o elemento da cabeça em O(1).
+      Pior caso:
+        Houver mais de um elemento na lista, fazendo assim um while ser percorrido para desalocar as mensagens presentes na lista encadeada.
+    ~CaixaEntrada:
+      Melhor caso:
+        Exemplo parecido com o caso DesalocaMensagens, uma vez que ele instancia a função, sendo O(1), caso exista apenas uma Mensagem.
+      Pior caso:
+        Caso aja mais de uma mensagem, tendo que instanciar a função DesalocaMensagens que possui um while que percorre a lista para desalocar os elementos presentes nela.
+  
+  ### Usuario
+    Usuario() = O(1)
+    Usuario(inteiro id) = O(1)
+    RecebeMensagem(Objeto do tipo Mensagem) = melhor caso O(1), pior caso O(n)
+    ExibeMensagens() = O(1)
+    DesalocaMensagens() = melhor caso O(1), pior caso O(n)
+    ~Usuario() = O(1)
+    
+    RecebeMensagem:
+      Função que apenas instancia a função Insere_Prioridade do TAD CaixaEntrada, logo a explicação para ela é a mesma para a função descrita no TAD. 
+    ExibeMensagens:
+      Função que instancia uma função que apenas exibe o elemento head de CaixaEntrada, logo essa operação continua sendo O(1).
+    DesalocaMensagens:
+      Função com a mesma função descrita anteriormente com o unico adendo de que ela está sendo chamada em usuario que vai ser utilizada em ListaUsuario para desalocar a caixa de entrada de cada usuario cadastrado antes de desalocar o proprio usuario. 
+    
+  ### ListaUsuario
+    ListaUsuario() = O(1)
+    cadastroUsuario(inteiro id) = melhor caso O(1), pior caso O(n)
+    mostrarCaixaEntradada(inteiro id) = O(n)
+    enviaMensagem(inteiro id, Objeto do tipo Mensagem) = O(n)
+    procuraUsuario(inteiro id) = melhor caso O(1), pior caso O(n)
+    removerUsuario(inteiro id) = O(n)
+    Limpa() = O(n)
+    ~ListaUsuario() = melhor caso O(1), pior caso O(n)
+
+    cadastroUsuario:
+      Melhor caso:
+        O melhor caso será alcançado apenas quando for inserido o primeiro usuario.
+      Pior caso:
+        Para qualquer usuario que for cadastrado após o primeiro será rodado um while para checar se ele está presente, logo o pior caso sempre será acionado.
+    mostrarCaixaEntradada:
+      Apesar da função que exibe mensagem ser O(1), ela sempre estará sendo dominada por uma função que será O(n), uma vez que ela irá percorrer o while para encontrar o usuario com id compativel com aquele que será exibido. 
+    enviaMensagem:
+      função que tambem percorre um while para encontrar um usuario pra chamar a instancia de usuario para enviar mensagem.
+    procuraUsuario:
+      Função que obrigatoriamente irá percorrer a lista para retornar o booleano, porém pode ser O(1) se o elemento de interesse estiver na cabeça da lista.
+    removerUsuario:
+      Função O(n) pelo fato de ter que percorrer dois while, um para checar se o usuario está presente na lista e outro pra apagar ele, logo sua complexidade linear se deve ao fato das comparações de um parametro externo com um atributo do o objeto na lista.
+    Limpa:
+      Função O(n), pois possui um while que é obrigatoriamente rodado para deletar todos os objetos do tipo Usuario da lista.
+
+    ~ListaUsuario:
+      Melhor caso:
+        houver apenas um usuario, tendo assim o papel de deletar apenas a cabeça da lista
+      Pior caso:
+        Caso aja mais de um elemento na lista é preciso rodar um while para desalocar todos os elementos.
+
+    Visão geral:
+      Dado que para estimar o tempo de execução e o limite assintotico de um programa, devemos analisar função por função, chega-se a conclusão de que o programa possui um limite assintotico O(n).
+  ### Usuario
+    O TAD Usuario 

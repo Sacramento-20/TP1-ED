@@ -16,7 +16,6 @@ class CaixaEntrada{
     CaixaEntrada();
     CaixaEntrada(Mensagem& msg);
     
-    bool vazia();
     void Insere_Prioridade(Mensagem &msg);
     void mostrarPrioridade();
     void DesalocaMensagens();
