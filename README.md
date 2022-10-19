@@ -70,3 +70,31 @@ O Trabalho prático está dividido em quatro TADs, sendo eles:
   Destrutor Usuario: Destrutor virtual que não possui nenhuma implementação.
 
 ### ListaUsuario
+  O TAD ListaUsuario possui a responsabilidade de coordenar todos os outros 3 TAD criados.
+  Como uma lista de Usuario que consequentemente cada um deles possui uma caixa de entrada, esse será o contrato com o maior numero de instancias em suas aplicações
+
+  Atributos do TAD ListaUsuario:
+
+  head: Ponteiro do tipo usuario que será responsável por inicializar a lista encadeada de ususarios.
+
+  Construtor de ListaUsuario: construtor padrão que não recebe parametros e que possui como função declarar head como um ponteiro nulo.
+
+  CadastraUsuario: Método do tipo void que possui como parametro um valor do tipo int que chamaremos de id. Após a chamada desse metodo será inicializado um ponteiro do tipo Usuario chamado auxiliar que receberá o endereço de head, após essa declaração head será submetido a uma estrutura condicional. Se caso head for nula, assume-se que a lista está vazia e dessa forma é cadastrado um usuário, dessa forma, head irá receber o endereço de um objeto do tipo Usuario que terá como parametro o valor inteiro id, retornando assim uma string informando que a conta foi devidamente cadastrada. Caso head não for nula, irá ser inicializada uma estrutura de repetição que vai comparar o id que foi passado com o id de todos os usuario que ja foram devidamente cadastrados e se caso houver algum usuário com mesmo id do que foi passado, é retornado um erro e a função é encerrada, O while percorre até a penultima posição, mas não valida para a ultima, dessa forma ele encerra a execução e checa se a ultima posição possui o mesmo id do que foi passado por parametro, caso não tenha sido o auxiliar next que agora se encontra na ultima posição recebe o endereço de um novo usuario com o id passado posteriormente.
+
+   MostrarCaixaEntrada: Método do tipo void que recebe como parametro um inteiro de nome id.
+   Nessa função head é passada para uma variavel do tipo ponteiro Usuario que será iterada em um while com uma condição que se o id passado por parametro for o mesmo do usuario que está sendo iterado, esse mesmo usuário irá instanciar uma função do objeto usuario que ExibeMensagens que por consequencia instancia uma função do objeto caixa de entrada para exibir a mensagem com maior prioridade. Caso o id que foi passado não estiver presente na lista, é exibido um erro informando que o usuario não existe e assim finalizando a execução da função.
+
+   EnviaMensagem: Metodo do tipo void que recebe como parametro um atributo do tipo inteiro id e um objeto do tipo Mensagem.
+   Nessa função será feita uma implementação analoga ao que foi feito na função que mostra a caixa de entrada, inicializando um ponteiro para head, iterando sobre ele, procurando um id semelhando ao que foi passado por parametro e se caso for encontrado, instanciar o metodo RecebeMensagem passando como parametro o objeto mensagem e exibindo uma string informando que a mensagem foi entregue, caso contrario não será enviada a mensagem e será impressa a mensagem de que o usuario não existe.
+
+    ProcuraUsuario: Metodo do tipo booleano que será importante para encontrar se um usuario está presente na lista ou não.
+    Ela recebe como paramentro um id e itera a lista encadeada procurando o usuario de mesmo id, caso não encontre, ela retornará 0, caso encontre, retornará 1. Essa função será bem importante para a função que será descrita logo em seguida, o metodo removeUsuario.
+
+    RemoveUsuario: Metodo do tipo void que recebe como parametro o id do usuario que é desejado a remoção.
+    Nesta funçao são inicializados dois ponteiro do tipo Usuario, um recebendo a cabeça da lista e outro vazio que será utilizado como temporario para a realização da remoção do usuario na lista. Após isso a função será submetida a uma estutura de condição que irá usar a função procura usuario para validar a existencia ou não do usuario na lista, caso não existir, será impressa uma mensagem da não existencia e encerrara o programa, caso contrário será inicializado um while que percorerá toda a lista, dentro do while ha 3 condições, se caso o id passado estiver em um usuario que se encontra na cabeça, a cabeça irá receber a o elemento seguinte e itera novamente o while. Se o auxiliar next for nulo, é encerrado o while e a mensagem de que usuario é inexistente é exibida. E por ultimo, se caso for encontrado o usuario, um segundo auxiliar recebe o usuario, o primeiro auxiliar que está iteradno a lista recebe o usuario seguinte para a ligação da lista e não deletar um usuario no meio da lista e por ultimo deleta o usuario do segundo auxiliar, finalizando o ciclo, removendo o usuario com base no seu id.
+
+    Limpa: Metodo do tipo void que não recebe nenhum parametro tem por objetivo desalocar todos os usuarios restantes na lista encadeada.
+    Através de um ponteiro auxiliar que é recebido o segundo elemento da lista, é passado por um for desaloca todos os usuario restantes, sobrendo apenas o elemento head.
+
+    Destrutor de ListaUsuario: Esse destrutor ira checar sempre se a cabeça da lista possui conteudo, caso exista, chama a função limpa, exemplificada a cima e por ultimo deleta o elemento da cabeça que foi deixado em aberto quando chamada a função Limpa, e assim é finalizada a execução do programa.
+ 

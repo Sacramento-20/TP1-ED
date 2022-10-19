@@ -10,17 +10,16 @@
 
 class ListaUsuario
 {
-private:
-  Usuario* head;
 public:
+  Usuario* head;
   ListaUsuario();
 
   void cadastroUsuario(int id);
   void mostrarCaixaEntradada(int id);
   void enviaMensagem(int id_destinatario, Mensagem &msg);
+  bool procuraUsuario(int id);
   void removerUsuario(int id);
   void Limpa();
-  bool procuraUsuario(int id);
   virtual ~ListaUsuario();
 };
 

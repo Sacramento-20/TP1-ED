@@ -113,10 +113,6 @@ void ListaUsuario::removerUsuario(int id)
     return ;
   }
   else{
-    // auxiliar = auxiliar->next;
-    // cout << "OK: CONTA " << id << " REMOVIDA\n";
-    // delete head;
-    // head = auxiliar;
     while(auxiliar){
       if(head->Id == id){
         head = head->next;
@@ -151,7 +147,10 @@ void ListaUsuario::Limpa()
     user = head->next;
   }
   // user->DesalocaMensagens();
-}
+}    // auxiliar = auxiliar->next;
+    // cout << "OK: CONTA " << id << " REMOVIDA\n";
+    // delete head;
+    // head = auxiliar;
 
 ListaUsuario::~ListaUsuario()
 // Descricao: Destrutor do objeto ListaUsuario
