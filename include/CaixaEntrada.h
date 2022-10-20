@@ -11,12 +11,12 @@
 class CaixaEntrada{
   public:
     Email* Head = nullptr;
-    Email* Temporario = nullptr;
+    // Email* Temporario = nullptr;
 
     CaixaEntrada();
-    CaixaEntrada(Email& mensagem);
+    CaixaEntrada( Email& mensagem );
     
-    void Insere_Prioridade(Email& mensagem);
+    void Insere_Prioridade( Email& mensagem );
     void Mostrar_Prioridade();
     void Desaloca_Mensagens();
     virtual ~CaixaEntrada();

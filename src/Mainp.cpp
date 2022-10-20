@@ -34,6 +34,7 @@ int main( int argc, char *argv[] ){
   ifstream texto;
   string frase, consulta = "CONSULTA", cadastra = "CADASTRA", entrega = "ENTREGA", remove = "REMOVE";
   int id_usuario = 0, prioridade;
+  int pos, tam;
 
   texto.open( argv[1] );
 
@@ -48,7 +49,6 @@ int main( int argc, char *argv[] ){
     
     if( encontrou_cadastra != string::npos ){
       
-      int pos, tam;
 
       // pos recebe a posição a frente a função que entrega
       pos = frase.find( " ", 0 );
@@ -75,7 +75,7 @@ int main( int argc, char *argv[] ){
     
     else if( encontrou_consulta != string::npos ){
       
-      int pos, tam;
+      // int pos, tam;
 
       // pos recebe a posição a frente a função que entrega
       pos = frase.find( " ", 0 );
@@ -103,7 +103,7 @@ int main( int argc, char *argv[] ){
     
     else if( encontrou_entrega != string::npos ){
       
-      int pos, tam;
+      // int pos, tam;
 
       // pos recebe a posição a frente a função que entrega
       pos = frase.find( " ", 0 );
@@ -158,7 +158,7 @@ int main( int argc, char *argv[] ){
   
     else if( encontrou_remove != string::npos ){
       
-      int pos, tam;
+      // int pos, tam;
 
       // pos recebe a posição a frente a função que entrega
       pos = frase.find( " ", 0 );

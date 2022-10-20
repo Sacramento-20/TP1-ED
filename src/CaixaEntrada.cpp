@@ -42,7 +42,7 @@ void CaixaEntrada::Insere_Prioridade( Email& mensagem )
   while(( auxiliar2 != NULL ) && ( auxiliar2->Prioridade >= novo_email -> Prioridade )){
   
     auxiliar1 = auxiliar2;
-    auxiliar2 = auxiliar2 ->  Next;
+    auxiliar2 = auxiliar2 -> Next;
   
   }
   if( auxiliar1 == auxiliar2 ){
